@@ -1,21 +1,20 @@
-let title = document.querySelector("h1");
+let randomNumber = randomNumberGenerator();
 
-title.innerHTML = "Jogo do número secreto";
+let btnGuess = document.querySelector(".container__botao");
 
-
-let paragraph = document.querySelector("p");
-
-paragraph.innerHTML = "Escolha um número entre 01 e 10";
-
-let btnGuess = document.querySelector('.container__botao')
-
-/*
-btnGuess.addEventListener('click', () => {
-        console.log("Teste")  
+function showTextOnScreen(tag, texto) {
+  let campo = document.querySelector(tag);
+  campo.innerHTML = texto;
 }
-)
-*/
 
-function validateGuess(){
-    console.log('test')
+showTextOnScreen("h1", "Jogo do número secreto");
+showTextOnScreen("p", "Escolha um número entre 1 e 100");
+
+function validateGuess() {
+  let guess = document.querySelector("input").value;
+  console.log((guess == randomNumber));
+}
+
+function randomNumberGenerator() {
+  return parseInt(Math.random() * 10 + 1);
 }
