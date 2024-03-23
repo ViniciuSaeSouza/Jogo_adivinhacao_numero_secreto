@@ -1,16 +1,18 @@
 let randomNumber = randomNumberGenerator();
 let btnGuess = document.querySelector(".container__botao");
+let btnReset = document.querySelector("#reiniciar");
 let chances = 1;
-
-console.log(randomNumber);
 
 function showTextOnScreen(tag, texto) {
   let campo = document.querySelector(tag);
   campo.innerHTML = texto;
 }
+function initialText() {
+  showTextOnScreen("h1", "Jogo do número secreto");
+  showTextOnScreen("p", "Escolha um número entre 1 e 10");
+}
 
-showTextOnScreen("h1", "Jogo do número secreto");
-showTextOnScreen("p", "Escolha um número entre 1 e 100");
+initialText();
 
 function clearText() {
   guess = document.querySelector("input");
@@ -20,6 +22,7 @@ function clearText() {
 function validateGuess() {
   let guess = document.querySelector("input").value;
   if (guess == randomNumber) {
+    btnReset.removeAttribute("disabled");
     showTextOnScreen("h1", "Acertou!");
     let trysText = chances > 1 ? "tentativas" : "tentativa";
     let chancesText = `Você acertou o número secreto com ${chances} ${trysText}`;
@@ -33,6 +36,14 @@ function validateGuess() {
     chances++;
     clearText();
   }
+}
+
+function resetGame() {
+  randomNumber = randomNumberGenerator();
+  clearText();
+  chances = 1;
+  initialText();
+  btnReset.setAttribute('disabled', true);
 }
 
 function randomNumberGenerator() {
