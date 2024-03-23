@@ -1,5 +1,4 @@
 let randomNumber = randomNumberGenerator();
-
 let btnGuess = document.querySelector(".container__botao");
 
 function showTextOnScreen(tag, texto) {
@@ -12,7 +11,16 @@ showTextOnScreen("p", "Escolha um número entre 1 e 100");
 
 function validateGuess() {
   let guess = document.querySelector("input").value;
-  console.log((guess == randomNumber));
+  if (guess == randomNumber) {
+    showTextOnScreen("h1", "Acertou!");
+    showTextOnScreen("p", "Você acertou o número secreto!");
+  } else {
+    if (guess > randomNumber) {
+      showTextOnScreen("p", "O número secreto é menor! ");
+    } else {
+      showTextOnScreen("p", "O número secreto é maior!");
+    }
+  }
 }
 
 function randomNumberGenerator() {
