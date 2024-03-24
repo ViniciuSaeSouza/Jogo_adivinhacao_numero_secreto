@@ -10,6 +10,7 @@ console.log(randomNumber)
 function showTextOnScreen(tag, texto) {
   let campo = document.querySelector(tag);
   campo.innerHTML = texto;
+  responsiveVoice.speak(texto, 'Brazilian Portuguese Female', {rate:1.2});
 }
 function initialText() {
   showTextOnScreen("h1", "Jogo do número secreto");
