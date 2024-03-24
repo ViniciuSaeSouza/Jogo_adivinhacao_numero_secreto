@@ -1,7 +1,11 @@
+let listasNumerosSorteados = [];
+let numeroLimite = 10;
 let randomNumber = randomNumberGenerator();
 let btnGuess = document.querySelector(".container__botao");
 let btnReset = document.querySelector("#reiniciar");
 let chances = 1;
+
+console.log(randomNumber)
 
 function showTextOnScreen(tag, texto) {
   let campo = document.querySelector(tag);
@@ -40,12 +44,27 @@ function validateGuess() {
 
 function resetGame() {
   randomNumber = randomNumberGenerator();
+  console.log(randomNumber)
   clearText();
   chances = 1;
   initialText();
-  btnReset.setAttribute('disabled', true);
+  btnReset.setAttribute("disabled", true);
+
 }
 
 function randomNumberGenerator() {
-  return parseInt(Math.random() * 10 + 1);
+  let numeroEscolhido = parseInt(Math.random() * numeroLimite + 1);
+  let quantidadeItensNaLista = listasNumerosSorteados.length;
+
+  if (quantidadeItensNaLista == numeroLimite) {
+    listasNumerosSorteados = [];
+  }
+
+  if (listasNumerosSorteados.includes(numeroEscolhido)) {
+    return randomNumberGenerator();
+  } else {
+    listasNumerosSorteados.push(numeroEscolhido);
+    console.log(listasNumerosSorteados);
+    return numeroEscolhido;
+  }
 }
